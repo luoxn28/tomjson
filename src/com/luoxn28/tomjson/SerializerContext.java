@@ -1,8 +1,6 @@
 package com.luoxn28.tomjson;
 
-import com.luoxn28.tomjson.serializer.CollectionSerializer;
-import com.luoxn28.tomjson.serializer.JsonSerializer;
-import com.luoxn28.tomjson.serializer.ObjectSerializer;
+import com.luoxn28.tomjson.serializer.*;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -26,6 +24,10 @@ public class SerializerContext {
 
     static {
         config = new HashMap<Class, JsonSerializer>();
+
+        config.put(String.class, new StringSerializer());
+
+        config.put(Integer.class, new IntegerSerializer());
     }
 
     private static SerializerContext context = new SerializerContext();
@@ -48,6 +50,10 @@ public class SerializerContext {
      * 根绝不同Class获取对应的序列化类
      */
     public JsonSerializer getObject(Class clazz) {
+        if (objectSerializer == null || collectionSerializer == null) {
+            objectSerializer = new ObjectSerializer();
+            collectionSerializer = new CollectionSerializer();
+        }
         JsonSerializer write = objectSerializer;
 
         try {

@@ -4,14 +4,13 @@ import com.luoxn28.tomjson.SerializerContext;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
-import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 
 /**
  * ObjectSerializer - Object序列化类
  *
  * @author luoxn28
- * @date 2016.7.15
+ * @date 2016.7.21
  */
 public class ObjectSerializer implements JsonSerializer {
 
