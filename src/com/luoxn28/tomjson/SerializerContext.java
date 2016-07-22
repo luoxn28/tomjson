@@ -27,7 +27,11 @@ public class SerializerContext {
 
         config.put(String.class, new StringSerializer());
 
+        config.put(Boolean.class, new BooleanSerializer());
         config.put(Integer.class, new IntegerSerializer());
+        config.put(Long.class, new LongSerializer());
+        config.put(Double.class, new DoubleSerializer());
+
     }
 
     private static SerializerContext context = new SerializerContext();

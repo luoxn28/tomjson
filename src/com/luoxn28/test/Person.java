@@ -9,6 +9,7 @@ public class Person {
 
     private String name;
     private int age;
+    private double money;
 
     // ---------------------------------- Constructors
 
@@ -37,4 +38,20 @@ public class Person {
         this.age = age;
     }
 
+    public double getMoney() {
+        return money;
+    }
+
+    public void setMoney(double money) {
+        this.money = money;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", money=" + money +
+                '}';
+    }
 }
