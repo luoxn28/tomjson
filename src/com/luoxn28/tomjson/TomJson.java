@@ -1,5 +1,6 @@
 package com.luoxn28.tomjson;
 
+import com.luoxn28.tomjson.deserializer.JsonObject;
 import com.luoxn28.tomjson.serializer.JsonSerializer;
 import com.luoxn28.tomjson.serializer.SerializerBuffer;
 
@@ -25,6 +26,20 @@ public class TomJson {
         JsonSerializer write = config.getObject(object.getClass());
         write.write(null, object, buffer);
         return buffer.toString();
+    }
+
+    /**
+     * json字符串转换为JsonObject
+     */
+    public static JsonObject parseObject(String text) {
+        return JsonObject.parseObject(text);
+    }
+
+    /**
+     * json字符串转换为指定的Object
+     */
+    public static <T> T parseObject(String text, Class<T> clazz) {
+        return JsonObject.parseObject(text, clazz);
     }
 
 }

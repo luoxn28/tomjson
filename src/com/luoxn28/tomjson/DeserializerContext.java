@@ -1,6 +1,6 @@
 package com.luoxn28.tomjson;
 
-import com.luoxn28.tomjson.deserializer.JsonDeserializer;
+import com.luoxn28.tomjson.deserializer.*;
 import com.luoxn28.tomjson.util.TinyUtil;
 
 import java.util.HashMap;
@@ -21,6 +21,11 @@ public class DeserializerContext {
 
     static {
         config = new HashMap<Class, JsonDeserializer>();
+
+        config.put(String.class, new StringDeserializer());
+        config.put(Integer.class, new IntegerDeserializer());
+        config.put(Long.class, new LongDeserializer());
+        config.put(Double.class, new DoubleDeserializer());
     }
 
     // ---------------------------------- Constructors
