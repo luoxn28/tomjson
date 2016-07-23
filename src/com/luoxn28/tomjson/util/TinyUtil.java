@@ -82,6 +82,18 @@ public class TinyUtil {
     }
 
     /**
+     * 判断字符串是否是集合类
+     */
+    public static boolean isJsonCollectionBean(String text) {
+        String value = getJsonValue(text);
+        if (!flagOk(value.charAt(0), value.charAt(value.length() - 1))) {
+            return false;
+        }
+
+        return (value.charAt(0) == '[' && value.charAt(value.length() - 1) == ']');
+    }
+
+    /**
      * 判断json字符串格式是否正确
      */
     public static boolean isJsonFormatOk(String text) {
@@ -133,6 +145,25 @@ public class TinyUtil {
         int right = text.length() - 1;
 
         if (text.charAt(0) == '{' && text.charAt(text.length() - 1) == '}') {
+            return text.substring(left + 1, right);
+        }
+        else {
+            return text;
+        }
+    }
+
+    /**
+     * 去除text中最外侧的 []
+     */
+    public static String trimSquare(String text) {
+        if (text == null) {
+            return "";
+        }
+        text = text.trim();
+        int left = 0;
+        int right = text.length() - 1;
+
+        if (text.charAt(0) == '[' && text.charAt(text.length() - 1) == ']') {
             return text.substring(left + 1, right);
         }
         else {

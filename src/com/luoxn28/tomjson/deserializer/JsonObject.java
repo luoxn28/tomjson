@@ -69,10 +69,10 @@ public class JsonObject {
                     String name = field.getName();
                     if (name.equals(key)) {
                         String type = field.getGenericType().toString();
-                        String className = type.substring(type.indexOf(' ') + 1, type.length());
+                       String className = type.substring(type.indexOf(' ') + 1, type.length());
                         Class subClazz = null;
                         try {
-                            subClazz = Class.forName(type.substring(type.indexOf(' ') + 1, type.length()));
+                            subClazz = Class.forName(className);
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
                             // break for (Field field : fields)
@@ -88,6 +88,36 @@ public class JsonObject {
                         } catch (IllegalAccessException e) {
                             e.printStackTrace();
                         }
+                    }
+                }
+            }
+            else if (TinyUtil.isJsonCollectionBean(token)) {
+                String key = TinyUtil.getJsonKey(token);
+                String valueStr = TinyUtil.getJsonValue(token);
+
+                Field[] fields = clazz.getDeclaredFields();
+                for (Field field : fields) {
+                    String name = field.getName();
+                    if (name.equals(key)) {
+                        String type = field.getGenericType().toString();
+                        String valueClass = type.substring(type.indexOf('<') + 1, type.indexOf('>'));
+
+                        List list = new ArrayList<>();
+                        List<String> beans = getTokens("{" + TinyUtil.trimSquare(valueStr) + "}");
+                        for (String bean : beans) {
+                            Class subClazz = null;
+                            try {
+                                subClazz = Class.forName(valueClass);
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                                break;
+                            }
+
+
+                            Object subObject = parseObject(bean, subClazz);
+                            list.add(subObject);
+                        }
+                        jsonObject.keyValue.put(TinyUtil.getJsonKey(token), list);
                     }
                 }
             }
