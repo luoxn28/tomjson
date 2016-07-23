@@ -1,5 +1,8 @@
 package com.luoxn28.test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Person - 测试类
  */
@@ -10,6 +13,9 @@ public class Person {
     private String name;
     private int age;
     private double money;
+
+    private Dog dog;
+    private List<Dog> dogs = new ArrayList<>();
 
     // ---------------------------------- Constructors
 
@@ -46,12 +52,31 @@ public class Person {
         this.money = money;
     }
 
+    public Dog getDog() {
+        return dog;
+    }
+
+    public void setDog(Dog dog) {
+        this.dog = dog;
+    }
+
+    public List<Dog> getDogs() {
+        return dogs;
+    }
+
+    public void setDogs(List<Dog> dogs) {
+        this.dogs = dogs;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
                 ", money=" + money +
+                ", dog=" + dog +
+                ", dogs=" + dogs +
                 '}';
     }
+
 }
