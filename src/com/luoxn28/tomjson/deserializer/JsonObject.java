@@ -113,7 +113,6 @@ public class JsonObject {
                                 break;
                             }
 
-
                             Object subObject = parseObject(bean, subClazz);
                             list.add(subObject);
                         }
