@@ -21,6 +21,8 @@ public class SerializerContext {
     private static ObjectSerializer objectSerializer = null;
     // Collection序列化类
     private static CollectionSerializer collectionSerializer = null;
+    // Map序列化类
+    private static MapSerializer mapSerializer = null;
 
     static {
         config = new HashMap<Class, JsonSerializer>();
@@ -54,9 +56,10 @@ public class SerializerContext {
      * 根绝不同Class获取对应的序列化类
      */
     public JsonSerializer getObject(Class clazz) {
-        if (objectSerializer == null || collectionSerializer == null) {
+        if (objectSerializer == null || collectionSerializer == null || mapSerializer == null) {
             objectSerializer = new ObjectSerializer();
             collectionSerializer = new CollectionSerializer();
+            mapSerializer = new MapSerializer();
         }
         JsonSerializer write = objectSerializer;
 
@@ -66,6 +69,9 @@ public class SerializerContext {
             }
             else if (clazz.newInstance() instanceof Collection) {
                 write = collectionSerializer;
+            }
+            else if (clazz.newInstance() instanceof Map) {
+                write = mapSerializer;
             }
             else {
                 write = objectSerializer;

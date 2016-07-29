@@ -5,6 +5,7 @@ import com.luoxn28.tomjson.deserializer.JsonObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -17,6 +18,11 @@ public class TestMain {
         person.setMoney(13.14);
         person.setDog(new Dog("gay"));
         person.setDogs(new ArrayList<Dog>(Arrays.asList(new Dog("gay1"), new Dog("gar2"))));
+
+        Map<Object, Object> map = new HashMap<>();
+        map.put("name", "tomjson");
+        map.put("age", 18);
+        person.setMap(map);
 
         System.out.println("----- Object序列化为json -----");
         String jsonString = TomJson.toJsonString(person);

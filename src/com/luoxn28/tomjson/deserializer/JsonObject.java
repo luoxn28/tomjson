@@ -74,7 +74,8 @@ public class JsonObject {
                         try {
                             subClazz = Class.forName(className);
                         } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
+                            //e.printStackTrace();
+                            System.out.println("Not find class, is it Map ? :(");
                             // break for (Field field : fields)
                             break;
                         }

@@ -1,7 +1,9 @@
 package com.luoxn28.test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Person - 测试类
@@ -16,6 +18,8 @@ public class Person {
 
     private Dog dog;
     private List<Dog> dogs = new ArrayList<>();
+
+    private Map<Object, Object> map = new HashMap<>();
 
     // ---------------------------------- Constructors
 
@@ -66,6 +70,14 @@ public class Person {
 
     public void setDogs(List<Dog> dogs) {
         this.dogs = dogs;
+    }
+
+    public Map<Object, Object> getMap() {
+        return map;
+    }
+
+    public void setMap(Map<Object, Object> map) {
+        this.map = map;
     }
 
     @Override
